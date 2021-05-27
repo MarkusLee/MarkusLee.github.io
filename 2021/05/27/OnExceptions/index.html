@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  
+  <title>MarcusLee&#39;s Blog</title>
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    <link rel='manifest' href='/manifest.json'>
+  
+
+  
+<link rel="stylesheet" href="/css/var.css">
+
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<link rel="stylesheet" href="/css/typography.css">
+
+  
+<link rel="stylesheet" href="/css/code-highlighting.css">
+
+  
+<link rel="stylesheet" href="/css/components.css">
+
+  
+<link rel="stylesheet" href="/css/nav.css">
+
+  
+<link rel="stylesheet" href="/css/paginator.css">
+
+  
+<link rel="stylesheet" href="/css/footer.css">
+
+  
+<link rel="stylesheet" href="/css/post-list.css">
+
+  
+<link rel="stylesheet" href="/css/waline.css">
+
+  
+  
+  
+<link rel="stylesheet" href="/css/post.css">
+
+  
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+    <body>
+        <nav id="theme-nav">
+    <div class="inner">
+        <a class="title" href="/">Marcus Lee</a>
+        <div class="nav-arrow"></div>
+        <div class="nav-items">
+            <a class="nav-item nav-item-home" href="/">Home</a>
+            
+            
+            <a class="nav-item" href="/archives">Archives</a>
+            
+            
+            
+            <a class="nav-item" href="/friends">Friends</a>
+            
+            
+            
+            <a class="nav-item" href="/projects">Projects</a>
+            
+            
+            
+            <a class="nav-item" href="/about">About</a>
+            
+            
+            
+            <a class="nav-item nav-item-github nav-item-icon" href="https://github.com/MarkusLee" target="_blank">&nbsp;</a>
+            
+            
+        </div>
+    </div>
+</nav>
+        <article class="post">
+    <div class="meta">
+        
+        <div class="date" id="date">
+            
+            
+            
+            
+            
+            <span>May</span>
+            
+            
+            
+            
+            
+            
+            
+            
+            <span>27,</span>
+            <span>2021</span>
+        </div>
+        
+
+        <h2 class="title"></h2>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content">
+        <h1 id="On-Exceptions"><a href="#On-Exceptions" class="headerlink" title="On Exceptions"></a>On Exceptions</h1><h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>在软件构造作业1中，我写出了的这样的一段代码，用于判断矩阵中每行和是否都相等，如果相等则返回每行的和，如果不全相等则抛出一个自己定义的异常并且返回。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NotEquivalent</span> <span class="keyword">extends</span> <span class="title">Exception</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">GetRowSum</span><span class="params">(List&lt;List&lt;Integer&gt;&gt; matrix)</span> <span class="keyword">throws</span> NotEquivalent </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> preSum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; matrix.size(); i++) &#123;</span><br><span class="line">        List&lt;Integer&gt; row = matrix.get(i);</span><br><span class="line">        <span class="keyword">int</span> curSum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (Integer n : row) &#123;</span><br><span class="line">            curSum += n;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (i == <span class="number">0</span>) &#123;</span><br><span class="line">            preSum = curSum;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (curSum != preSum) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NotEquivalent();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> preSum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是当我回头看这一段代码的时候，我感觉这段代码其实是存在问题的。关键在于行和不相等情况的处理，这里其实并不需要使用异常。因为在调用该函数之前，已经确保矩阵中每个整数必须是正数，因此完全可以返回一个非正数（例如 -1 ）来表明行和不相等。使用异常反而增加了代码的复杂度以及代码的运行开销。</p>
+<p>于是我去各处浏览了关于异常使用方面的一些观点，总结如下。</p>
+<h2 id="Why-Use-Exceptions"><a href="#Why-Use-Exceptions" class="headerlink" title="Why Use Exceptions"></a>Why Use Exceptions</h2><p>异常情形 (exceptional condition) 指当前环境无法获得足够信息来解决问题，与之相反，普通问题指当前环境下能得到足够的信息来处理这个问题。<br>因此，在异常情形下，应该把问题交给上一级环境（即抛出异常）。</p>
+<h2 id="Exceptions-amp-Ordinary-Control-Flow"><a href="#Exceptions-amp-Ordinary-Control-Flow" class="headerlink" title="Exceptions &amp; Ordinary Control Flow"></a>Exceptions &amp; Ordinary Control Flow</h2><p>在 <em>Effective Java</em> 中有这样一段话</p>
+<blockquote>
+<p>Exceptions are, as their name implies, to be used only for exceptional conditions; they should never be used for ordinary control flow. More generally, use standard, easily recognizable idioms in preference to overly clever techniques that purport to offer better performance.</p>
+</blockquote>
+<p>因此，应该只在处理非正常情况 (unexpected cases) 的时候使用异常，而不应该将异常加入一般控制流（例如条件判断）来处理可预知的情况。<br>又因为抛出和捕获异常需要花费很大的代价，所以为了提高程序的效率，一种更好的方法是使用不同的返回值来表示当前方法的处理结果。</p>
+<p>此外，作者还提到</p>
+<blockquote>
+<p>A well-designed API must not force its clients to use exceptions for ordinary control flow.</p>
+</blockquote>
+<h2 id="Exceptions-amp-Assertions"><a href="#Exceptions-amp-Assertions" class="headerlink" title="Exceptions &amp; Assertions"></a>Exceptions &amp; Assertions</h2><p>异常用来检查一个<strong>可能</strong>发生的状况，并对其进行处理，以提高程序的健壮性。如果异常出现错误，则程序进入到try-catch的异常处理，会继续运行。</p>
+<ul>
+<li>use exceptions when checking parameters passed to public or protected methods and constructors</li>
+<li>use exceptions when interacting with the user or when you expect the client code to recover from an exceptional situation</li>
+<li>use exceptions to address problems that might occur</li>
+</ul>
+<p>而断言应该用来检查一个<strong>不应该</strong>发生的情况，从而发现代码逻辑中的错误，以确保程序的正确性。如果断言出现错误，则程序会终止运行。并且在运行的时候，断言被默认禁用，因此断言一般只用于debugging</p>
+<ul>
+<li><p>use assertions when checking pre-conditions, post-conditions and invariants of private/internal code</p>
+</li>
+<li><p>use assertions to provide feedback to yourself or your developer team</p>
+</li>
+<li><p>use assertions when checking for things that are very unlikely to happen otherwise it means that there is a serious ﬂaw in your application</p>
+</li>
+<li><p>use assertions to state things that you (supposedly) know to be true</p>
+</li>
+</ul>
+<h2 id="Preventing-Catching-Exception"><a href="#Preventing-Catching-Exception" class="headerlink" title="Preventing / Catching Exception"></a>Preventing / Catching Exception</h2><p>只有当异常成为某种可行的程序状态 (valid program state) 的时候，才应该防止异常的产生（例如使用 <code>if (foo != null) &#123;...&#125;</code> 来防止 <code>NullPointerException</code> 的产生）</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p>On Java 8</p>
+<p>Effective Java (Third Edition)</p>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/3213094/when-to-use-exceptions-in-java-example">When to use exceptions in Java</a></p>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/1957645/when-to-use-an-assertion-and-when-to-use-an-exception">When to use an assertion and when to use an exception</a></p>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/894829/preventing-exceptions-vs-catching-exceptions-in-java">Preventing exceptions vs. catching exceptions in Java</a></p>
+
+    </div>
+
+    <div class="about">
+        <h1>About this Post</h1>
+        <p>This post is written by Marcus Lee, licensed under <a
+                target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc/4.0">CC BY-NC 4.0</a>.</p>
+    </div>
+
+    
+        
+    
+</article>
+        <footer>
+    <div class="inner">
+        <div class="links">
+            
+            <div class="group">
+                <h4 class="title">Blog</h4>
+                
+                <a href="/" class="item" target="_blank">Blog</a>
+                
+                <a href="/archives" class="item" target="_blank">Archives</a>
+                
+                <a href="/friends" class="item" target="_blank">Friends</a>
+                
+                <a href="/projects" class="item" target="_blank">Projects</a>
+                
+                <a href="/resume" class="item" target="_blank">Resume</a>
+                
+                <a href="/about" class="item" target="_blank">About</a>
+                
+                <a href="/atom.xml" class="item" target="_blank">RSS</a>
+                
+            </div>
+            
+            <div class="group">
+                <h4 class="title">Projects</h4>
+                
+                <a href="https://github.com/transmister" class="item" target="_blank">Transmister</a>
+                
+                <a href="https://github.com/MrWillCom/css-and-js-windows-uwp-xaml-controls" class="item" target="_blank">CSS&amp;JS Windows UWP XAML Controls</a>
+                
+                <a href="https://github.com/MrWillCom/hexo-theme-cupertino" class="item" target="_blank">Theme Cupertino</a>
+                
+                <a href="https://github.com/MrWillCom/github-dark-mode" class="item" target="_blank">GitHub Dark Mode</a>
+                
+            </div>
+            
+            <div class="group">
+                <h4 class="title">Me</h4>
+                
+                <a href="https://github.com/MarkusLee" class="item" target="_blank">GitHub</a>
+                
+                <a href="mailto:lxmarcus@foxmail.com" class="item" target="_blank">Email</a>
+                
+            </div>
+            
+        </div>
+        &copy; 2021 Marcus Lee<br />
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+</footer>
+
+        
+<script src="/js/main.js"></script>
+
+        
+    </body>
+</html>
