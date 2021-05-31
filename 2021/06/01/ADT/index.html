@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  
+  <title>ADT - MarcusLee&#39;s Blog</title>
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    <link rel='manifest' href='/manifest.json'>
+  
+
+  
+<link rel="stylesheet" href="/css/var.css">
+
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<link rel="stylesheet" href="/css/typography.css">
+
+  
+<link rel="stylesheet" href="/css/code-highlighting.css">
+
+  
+<link rel="stylesheet" href="/css/components.css">
+
+  
+<link rel="stylesheet" href="/css/nav.css">
+
+  
+<link rel="stylesheet" href="/css/paginator.css">
+
+  
+<link rel="stylesheet" href="/css/footer.css">
+
+  
+<link rel="stylesheet" href="/css/post-list.css">
+
+  
+<link rel="stylesheet" href="/css/waline.css">
+
+  
+  
+  
+<link rel="stylesheet" href="/css/post.css">
+
+  
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+    <body>
+        <nav id="theme-nav">
+    <div class="inner">
+        <a class="title" href="/">Marcus Lee</a>
+        <div class="nav-arrow"></div>
+        <div class="nav-items">
+            <a class="nav-item nav-item-home" href="/">Home</a>
+            
+            
+            <a class="nav-item" href="/archives">Archives</a>
+            
+            
+            
+            <a class="nav-item" href="/friends">Friends</a>
+            
+            
+            
+            <a class="nav-item" href="/projects">Projects</a>
+            
+            
+            
+            <a class="nav-item" href="/about">About</a>
+            
+            
+            
+            <a class="nav-item nav-item-github nav-item-icon" href="https://github.com/MarkusLee" target="_blank">&nbsp;</a>
+            
+            
+        </div>
+    </div>
+</nav>
+        <article class="post">
+    <div class="meta">
+        
+        <div class="date" id="date">
+            
+            
+            
+            
+            
+            
+            <span>June</span>
+            
+            
+            
+            
+            
+            
+            
+            <span>1,</span>
+            <span>2021</span>
+        </div>
+        
+
+        <h2 class="title">ADT</h2>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content">
+        <h1 id="Abstract-Data-Type"><a href="#Abstract-Data-Type" class="headerlink" title="Abstract Data Type"></a>Abstract Data Type</h1><h2 id="Data-Abstraction"><a href="#Data-Abstraction" class="headerlink" title="Data Abstraction"></a>Data Abstraction</h2><p>Traditionally, data types focus on the data representation.</p>
+<p><em>Abstract data type</em> is defined by its <strong>OPERATIONS</strong> and focuses on <strong>operations</strong> – user of the type need not to worry about how its values were actually stored.</p>
+<h2 id="Classifications"><a href="#Classifications" class="headerlink" title="Classifications"></a>Classifications</h2><h3 id="Mutable-amp-Immutable-types"><a href="#Mutable-amp-Immutable-types" class="headerlink" title="Mutable &amp; Immutable types"></a>Mutable &amp; Immutable types</h3><h4 id="Mutable-types"><a href="#Mutable-types" class="headerlink" title="Mutable types"></a>Mutable types</h4><p>the objects of a mutable type can be <strong>changed</strong> – provide operations </p>
+<p>e.g. <code>Date</code>, <code>StringBuilder</code></p>
+<h4 id="Immutable-types"><a href="#Immutable-types" class="headerlink" title="Immutable types"></a>Immutable types</h4><p>its operations <strong>create new objects</strong> rather than changing existing ones</p>
+<p>e.g. <code>String</code></p>
+<h3 id="Operations"><a href="#Operations" class="headerlink" title="Operations"></a>Operations</h3><p>$ T: \text{the abstract type itself} \ t : \text{some other type}$</p>
+<h4 id="Creator"><a href="#Creator" class="headerlink" title="Creator"></a>Creator</h4><p>$t^{*} \rarr T$</p>
+<p>create new objects of the type.<br>A creator may take an object as an argument, but not an object of the type being constructed.</p>
+<p>either a <strong>constructor</strong> or a <strong>static method</strong></p>
+<h4 id="Producers"><a href="#Producers" class="headerlink" title="Producers"></a>Producers</h4><p>$T^{+}, t^{*} \rarr T$</p>
+<p>create new objects from old objects of the type.<br>The <code>concat()</code> method of <code>String</code> , for example, is a producer: it takes two strings and produces a new one representing their concatenation.</p>
+<h4 id="Observers"><a href="#Observers" class="headerlink" title="Observers"></a>Observers</h4><p>$T^{+}, t^{*} \rarr t$</p>
+<p>take objects of the abstract type and return objects of a different type.<br>The <code>size()</code> method of <code>List</code> , for example, returns an int.</p>
+<h4 id="Mutator"><a href="#Mutator" class="headerlink" title="Mutator"></a>Mutator</h4><p>$T^{+}, t^{*} \rarr void \ | \ t \ | \ T$</p>
+<p>change objects.<br>The <code>add()</code> method of <code>List</code> , for example, mutates a list by adding an element to the end.</p>
+<p>often has a void return type</p>
+<h2 id="Designing-ADT"><a href="#Designing-ADT" class="headerlink" title="Designing ADT"></a>Designing ADT</h2><h3 id="Rules-of-thumb-1"><a href="#Rules-of-thumb-1" class="headerlink" title="Rules of thumb 1"></a>Rules of thumb 1</h3><p>It’s better to have a <strong>few, simple</strong> operations that can be combined in powerful ways,<br>rather than lots of complex operations</p>
+<p>each operation should have a <strong>well-defined</strong> purpose and a <strong>coherent behaviour</strong>,<br>rather than a panoply of special cases</p>
+<h3 id="Rules-of-thumb-2"><a href="#Rules-of-thumb-2" class="headerlink" title="Rules of thumb 2"></a>Rules of thumb 2</h3><p>The set of operations should be <strong>adequate</strong> in the sense that there must be enough to do the kinds of computations clients are likely to want to do.</p>
+<h2 id="Representation-Independence"><a href="#Representation-Independence" class="headerlink" title="Representation Independence"></a>Representation Independence</h2><blockquote>
+<p>representation: the actual data structure or data fields used to implement the ADT</p>
+</blockquote>
+<p>a good ADT should be <em>representation independent</em>: changes in representation have no effect on code outside the abstract type itself.</p>
+<p>an ADT’s operations should be fully specified with preconditions and postconditions (for client and implementer to depend on)</p>
+<h2 id="Testing-ADT"><a href="#Testing-ADT" class="headerlink" title="Testing ADT"></a>Testing ADT</h2><ul>
+<li>to test creators, producers and mutators:<br>  call observers to see if the result of the operations satisfies the specification</li>
+<li>to test observers:<br>  call creators, producers and mutators to produce or mutate the object, and then call observers.</li>
+</ul>
+<h2 id="Invariant"><a href="#Invariant" class="headerlink" title="Invariant"></a>Invariant</h2><p><em>Invariant</em>: a property of a program that is always true, for every possible runtime state of the program</p>
+<p>a good ADT should preserve its own invariants<br>regardless of the behaviours from its clients or other modules</p>
+<p>goals:</p>
+<ol>
+<li>keep immutable!</li>
+<li>avoid <em>representation exposure</em></li>
+</ol>
+<p>approaches:</p>
+<ol>
+<li>use <code>private</code>, <code>final</code> keywords</li>
+<li>don’t incorporate mutable parameters into object</li>
+<li>return defensive copies / unmodifiable view of mutable fields</li>
+<li>use immutable components, to eliminate the need for defensive copying</li>
+</ol>
+<h2 id="Rep-Invariant-amp-Abstraction-Function"><a href="#Rep-Invariant-amp-Abstraction-Function" class="headerlink" title="Rep Invariant &amp; Abstraction Function"></a>Rep Invariant &amp; Abstraction Function</h2><p>$R$ : the space of representation values (rep values)<br>consists of the values of the actual implementation entities<br>seen and used by the implementer</p>
+<p>$A$ : the space of abstract values<br>consists of the values that the type is designed to support<br>seen and used by the client</p>
+<h3 id="Abstraction-Function"><a href="#Abstraction-Function" class="headerlink" title="Abstraction Function"></a>Abstraction Function</h3><p>maps rep values to the abstract values they represent<br>$$<br>AF: R \rarr A<br>$$</p>
+<h4 id="surjective"><a href="#surjective" class="headerlink" title="surjective"></a>surjective</h4><p>every abstract value is mapped to by some rep value</p>
+<h4 id="not-injective"><a href="#not-injective" class="headerlink" title="not injective"></a>not injective</h4><p>some abstract values are mapped to by more than one rep value</p>
+<h4 id="not-bijective"><a href="#not-bijective" class="headerlink" title="not bijective"></a>not bijective</h4><p>not all rep values are mapped</p>
+<h3 id="Rep-Invariant"><a href="#Rep-Invariant" class="headerlink" title="Rep Invariant"></a>Rep Invariant</h3><p>maps rep values to Booleans<br>$$<br>RI: R \rarr Boolean<br>$$<br>for a rep value $r$, $RI(r)$ is true $\lrarr$ $r$ is mapped by AF</p>
+<ul>
+<li>RI tells us whether a given rep value is <strong>well-formed</strong></li>
+<li>RI can be seen as a subset of rep values on which AF is defined</li>
+</ul>
+<h3 id="R-RI-amp-AF"><a href="#R-RI-amp-AF" class="headerlink" title="R, RI &amp; AF"></a>R, RI &amp; AF</h3><ul>
+<li>The same R can have different RIs.</li>
+<li>With the same type for R and the same RI, we might still interpret the rep differently, with different AFs.</li>
+</ul>
+<h3 id="RI-AF-amp-ADT"><a href="#RI-AF-amp-ADT" class="headerlink" title="RI, AF &amp; ADT"></a>RI, AF &amp; ADT</h3><p>designing an ADT:</p>
+<ol>
+<li>choose the 2 spaces $R$ and $A$</li>
+<li>decide what rep values to use (RI)</li>
+<li>decide how to interpret the rep values (AF)</li>
+<li>write down the assumptions in the code</li>
+</ol>
+<h3 id="Establish-Invariants"><a href="#Establish-Invariants" class="headerlink" title="Establish Invariants"></a>Establish Invariants</h3><ol>
+<li>Creators and producers must establish the invariant for new object instances.</li>
+<li>Mutators and observers must preserve the invariant.</li>
+<li>Using <code>checkRep()</code> to check invariants before each method returns</li>
+</ol>
+<h2 id="Beneficent-Mutation"><a href="#Beneficent-Mutation" class="headerlink" title="Beneficent Mutation"></a>Beneficent Mutation</h2><p>mutate a rep value that continues to map to the same abstract value</p>
+<p>so that the change is invisible to the client<br>mutators can show up in immutable types (but not arbitrarily)</p>
+<h2 id="Documenting-AF-RI-and-Safety-from-rep-exposure"><a href="#Documenting-AF-RI-and-Safety-from-rep-exposure" class="headerlink" title="Documenting AF, RI and Safety from rep exposure"></a>Documenting AF, RI and Safety from rep exposure</h2><h3 id="RI"><a href="#RI" class="headerlink" title="RI"></a>RI</h3><p>explain precisely what makes the field values valid or not</p>
+<h3 id="AF"><a href="#AF" class="headerlink" title="AF"></a>AF</h3><p>define precisely how the concrete field values are interpreted</p>
+<h3 id="Safety-from-rep-exposure"><a href="#Safety-from-rep-exposure" class="headerlink" title="Safety from rep exposure"></a>Safety from rep exposure</h3><p>examines each part of the rep, looks at the code that handles that part of the rep (particularly with respect to parameters and return values from clients, because that is where rep exposure occurs), and presents a reason why the code doesn’t expose the rep</p>
+<h3 id="ADT-Specification"><a href="#ADT-Specification" class="headerlink" title="ADT Specification"></a>ADT Specification</h3><p>should only talk about things that are visible to the client (parameters, return values, exceptions … abstract space A)</p>
+<p>should not talk about rep space R and private fields</p>
+<h2 id="ADT-invariants-replace-preconditions"><a href="#ADT-invariants-replace-preconditions" class="headerlink" title="ADT invariants replace preconditions"></a>ADT invariants replace preconditions</h2><p>a well-designed ADT encapsulates and enforces properties that we would otherwise have to stipulate in a <em>precondition</em></p>
+
+    </div>
+
+    <div class="about">
+        <h1>About this Post</h1>
+        <p>This post is written by Marcus Lee, licensed under <a
+                target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc/4.0">CC BY-NC 4.0</a>.</p>
+    </div>
+
+    
+        
+    
+</article>
+        <footer>
+    <div class="inner">
+        <div class="links">
+            
+            <div class="group">
+                <h4 class="title">Blog</h4>
+                
+                <a href="/" class="item" target="_blank">Blog</a>
+                
+                <a href="/archives" class="item" target="_blank">Archives</a>
+                
+                <a href="/friends" class="item" target="_blank">Friends</a>
+                
+                <a href="/projects" class="item" target="_blank">Projects</a>
+                
+                <a href="/resume" class="item" target="_blank">Resume</a>
+                
+                <a href="/about" class="item" target="_blank">About</a>
+                
+                <a href="/atom.xml" class="item" target="_blank">RSS</a>
+                
+            </div>
+            
+            <div class="group">
+                <h4 class="title">Projects</h4>
+                
+                <a href="https://github.com/transmister" class="item" target="_blank">Transmister</a>
+                
+                <a href="https://github.com/MrWillCom/css-and-js-windows-uwp-xaml-controls" class="item" target="_blank">CSS&amp;JS Windows UWP XAML Controls</a>
+                
+                <a href="https://github.com/MrWillCom/hexo-theme-cupertino" class="item" target="_blank">Theme Cupertino</a>
+                
+                <a href="https://github.com/MrWillCom/github-dark-mode" class="item" target="_blank">GitHub Dark Mode</a>
+                
+            </div>
+            
+            <div class="group">
+                <h4 class="title">Me</h4>
+                
+                <a href="https://github.com/MarkusLee" class="item" target="_blank">GitHub</a>
+                
+                <a href="mailto:lxmarcus@foxmail.com" class="item" target="_blank">Email</a>
+                
+            </div>
+            
+        </div>
+        &copy; 2021 Marcus Lee<br />
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+</footer>
+
+        
+<script src="/js/main.js"></script>
+
+        
+    </body>
+</html>
