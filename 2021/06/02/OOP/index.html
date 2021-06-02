@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  
+  <title>OOP - MarcusLee&#39;s Blog</title>
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    <link rel='manifest' href='/manifest.json'>
+  
+
+  
+<link rel="stylesheet" href="/css/var.css">
+
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<link rel="stylesheet" href="/css/typography.css">
+
+  
+<link rel="stylesheet" href="/css/code-highlighting.css">
+
+  
+<link rel="stylesheet" href="/css/components.css">
+
+  
+<link rel="stylesheet" href="/css/nav.css">
+
+  
+<link rel="stylesheet" href="/css/paginator.css">
+
+  
+<link rel="stylesheet" href="/css/footer.css">
+
+  
+<link rel="stylesheet" href="/css/post-list.css">
+
+  
+<link rel="stylesheet" href="/css/waline.css">
+
+  
+  
+  
+<link rel="stylesheet" href="/css/post.css">
+
+  
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+    <body>
+        <nav id="theme-nav">
+    <div class="inner">
+        <a class="title" href="/">Marcus Lee</a>
+        <div class="nav-arrow"></div>
+        <div class="nav-items">
+            <a class="nav-item nav-item-home" href="/">Home</a>
+            
+            
+            <a class="nav-item" href="/archives">Archives</a>
+            
+            
+            
+            <a class="nav-item" href="/friends">Friends</a>
+            
+            
+            
+            <a class="nav-item" href="/projects">Projects</a>
+            
+            
+            
+            <a class="nav-item" href="/about">About</a>
+            
+            
+            
+            <a class="nav-item nav-item-github nav-item-icon" href="https://github.com/MarkusLee" target="_blank">&nbsp;</a>
+            
+            
+        </div>
+    </div>
+</nav>
+        <article class="post">
+    <div class="meta">
+        
+        <div class="date" id="date">
+            
+            
+            
+            
+            
+            
+            <span>June</span>
+            
+            
+            
+            
+            
+            
+            
+            <span>2,</span>
+            <span>2021</span>
+        </div>
+        
+
+        <h2 class="title">OOP</h2>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content">
+        <h1 id="OOP"><a href="#OOP" class="headerlink" title="OOP"></a>OOP</h1><h2 id="Interface"><a href="#Interface" class="headerlink" title="Interface"></a>Interface</h2><p><strong>interface</strong> for designing and expressing an ADT<br><strong>class</strong> for implementing the interface</p>
+<p>a list of method signatures, but no method bodies</p>
+<p>java interface should be representation-independent</p>
+<p>java class can have more methods than it’s interface, but must satisfy its specification(e.g. mutable/immutable)</p>
+<h3 id="static-factory-method"><a href="#static-factory-method" class="headerlink" title="static factory method"></a>static factory method</h3><p>java interfaces <strong>can’t have constructors</strong><br>use static factory method instead – a static method of an interface that returns an instances of one implementation of the interface.</p>
+<h3 id="default-methods"><a href="#default-methods" class="headerlink" title="default methods"></a>default methods</h3><p>add methods to the interface that are automatically available in the implementations</p>
+<h2 id="Encapsulation-amp-Information-hiding"><a href="#Encapsulation-amp-Information-hiding" class="headerlink" title="Encapsulation &amp; Information hiding"></a>Encapsulation &amp; Information hiding</h2><p>methods are rewriteable by default</p>
+<p>use <code>final</code> keyword to prevent method from being overwritten</p>
+<p>write an empty body if the method is expected to be overwritten</p>
+<h3 id="information-hiding-with-interfaces"><a href="#information-hiding-with-interfaces" class="headerlink" title="information hiding with interfaces"></a>information hiding with interfaces</h3><ol>
+<li>declare variables using interface type</li>
+<li>client can use only interface methods</li>
+<li>fields not accessible from client code</li>
+</ol>
+<h3 id="visibility-modifiers"><a href="#visibility-modifiers" class="headerlink" title="visibility modifiers"></a>visibility modifiers</h3><table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">current class</th>
+<th align="center">current package</th>
+<th align="center">subtype</th>
+<th align="center">other package</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">public</td>
+<td align="center">:heavy_check_mark:</td>
+<td align="center">:heavy_check_mark:</td>
+<td align="center">:heavy_check_mark:</td>
+<td align="center">:heavy_check_mark:</td>
+</tr>
+<tr>
+<td align="center">protected</td>
+<td align="center">:heavy_check_mark:</td>
+<td align="center">:heavy_check_mark:</td>
+<td align="center">:heavy_check_mark:</td>
+<td align="center">:x:</td>
+</tr>
+<tr>
+<td align="center">default</td>
+<td align="center">:heavy_check_mark:</td>
+<td align="center">:heavy_check_mark:</td>
+<td align="center">:x:</td>
+<td align="center">:x:</td>
+</tr>
+<tr>
+<td align="center">private</td>
+<td align="center">:heavy_check_mark:</td>
+<td align="center">:x:</td>
+<td align="center">:x:</td>
+<td align="center">:x:</td>
+</tr>
+</tbody></table>
+<p>provide only functionality required by clients, and all other members should be <code>private</code> (you can always make a <code>private</code> member <code>public</code> later)</p>
+<h2 id="Inheritance-amp-Overriding"><a href="#Inheritance-amp-Overriding" class="headerlink" title="Inheritance &amp; Overriding"></a>Inheritance &amp; Overriding</h2><h3 id="strict-inheritance"><a href="#strict-inheritance" class="headerlink" title="strict inheritance"></a>strict inheritance</h3><p>the subclass can only <strong>add</strong> new methods to the super class, it <strong>cannot overwrite</strong> them</p>
+<h3 id="overriding"><a href="#overriding" class="headerlink" title="overriding"></a>overriding</h3><ol>
+<li>make sure signatures match</li>
+<li>use <code>@Override</code> so compiler knows and checks</li>
+<li>do copy-and-paste declarations</li>
+<li>the visibility can keep the same or increased, but not reduced</li>
+</ol>
+<h3 id="abstract-class"><a href="#abstract-class" class="headerlink" title="abstract class"></a>abstract class</h3><h4 id="abstract-method"><a href="#abstract-method" class="headerlink" title="abstract method"></a>abstract method</h4><p>defined by keyword <code>abstract</code></p>
+<p>a method with a signature but without an implementation</p>
+<h4 id="abstract-class-1"><a href="#abstract-class-1" class="headerlink" title="abstract class"></a>abstract class</h4><p>a class which contains at least one abstract method is called abstract class</p>
+<p>it cannot be instantiated</p>
+<p>before a class derived from an abstract class can be instantiated, all abstract methods of its parent classes must be implemented by some class in the derivation chain</p>
+<p>concrete class -&gt; <strong>abstract class</strong> -&gt; interface</p>
+<h2 id="Polymorphism"><a href="#Polymorphism" class="headerlink" title="Polymorphism"></a>Polymorphism</h2><h3 id="ad-hoc-polymorphism"><a href="#ad-hoc-polymorphism" class="headerlink" title="ad hoc polymorphism"></a>ad hoc polymorphism</h3><p>a function denotes different and potentially heterogeneous implementations depending on a limited range of individually specified type and specifications – function overloading</p>
+<p><strong>static</strong> polymorphism: the determination of which method to use is <strong>compile-time</strong><br>(while overriding is determined at <strong>run-time</strong>)</p>
+<h4 id="overloading"><a href="#overloading" class="headerlink" title="overloading"></a>overloading</h4><p>reuse the same method name in a class</p>
+<p>must have <strong>different arguments</strong><br>can change the return type / access modifier<br>can declare new or broader checked exceptions</p>
+<h3 id="parametric-polymorphism"><a href="#parametric-polymorphism" class="headerlink" title="parametric polymorphism"></a>parametric polymorphism</h3><p>generics / generic programming</p>
+<p>generic class/interface/method<br>(a class/interface/method is generic if it declares one or more <strong>type variables</strong>)</p>
+<ul>
+<li>wildcards</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* ? as wildcard */</span></span><br><span class="line">List&lt;?&gt; list = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">List&lt;? extends Animal&gt;</span><br><span class="line">List&lt;? <span class="keyword">super</span> Animal&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>generic type info only exists at compile-time (erased at run-time)</li>
+<li>generic array is impossible</li>
+</ul>
+<h4 id="generic-method"><a href="#generic-method" class="headerlink" title="generic method"></a>generic method</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* generic method */</span></span><br><span class="line"><span class="keyword">public</span> &lt;T&gt; <span class="function">T <span class="title">genericMethod</span><span class="params">(Class&lt;T&gt; tClass)</span> </span>&#123;</span><br><span class="line">    T instance = tClass.newInstance();</span><br><span class="line">    <span class="keyword">return</span> instance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>a generic method in a generic class can declare a <strong>different</strong> type variable from the original type variable the class declares</p>
+<p><strong>static</strong> method cannot use generic variable defined in class level</p>
+<h4 id="type-variable"><a href="#type-variable" class="headerlink" title="type variable"></a>type variable</h4><p>is an unqualified identifier</p>
+<p>using &lt;&gt; to help declare type variables</p>
+<h3 id="subtype-polymorphism"><a href="#subtype-polymorphism" class="headerlink" title="subtype polymorphism"></a>subtype polymorphism</h3><p>B is only a subtype of A if B’s specification is <strong>at least as strong as</strong> A’s specification.</p>
+<p>benefits: reuse of code, modelling flexibility</p>
+<p>different kinds of objects can be treated uniformly by client code<br>but each object behaves according to its type</p>
+<ul>
+<li>Liskov Substitution Principle (LSP)<br>  If S is a subtype of T, then objects of type T may be replaced with objects of type S (i.e. an object of type T may be substituted with any object of a subtype S) without altering any of the desirable properties of T.</li>
+</ul>
+<h2 id="Object-Methods"><a href="#Object-Methods" class="headerlink" title="Object Methods"></a>Object Methods</h2><p><code>equals()</code></p>
+<p><code>hashCode()</code> – a hash code for use in hash maps</p>
+<blockquote>
+<p>You must override equals() and hashCode() if you want <em>value</em> semantics</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* use the method to calculate hashcode of several fields */</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> arrays.hashcode(field1, field2, ...);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>toString()</code> – printable string representation</p>
+<h2 id="Immutable-Class"><a href="#Immutable-Class" class="headerlink" title="Immutable Class"></a>Immutable Class</h2><h3 id="advantages"><a href="#advantages" class="headerlink" title="advantages"></a>advantages</h3><ul>
+<li>Simplicity</li>
+<li>Inherently Thread-Safe</li>
+<li>Can be shared freely</li>
+<li>No need for defensive copies</li>
+<li>Excellent building blocks</li>
+</ul>
+<h3 id="how-to-write-immutable-classes"><a href="#how-to-write-immutable-classes" class="headerlink" title="how to write immutable classes"></a>how to write immutable classes</h3><ul>
+<li>Don’t provide any mutators</li>
+<li>Ensure that no methods may be overridden</li>
+<li>Make all fields final ▪ Make all fields private</li>
+<li>Ensure security of any mutable components (avoid rep exposure)</li>
+<li>Implement toString(), hashCode(), clone(), equals(), etc.</li>
+</ul>
+<h3 id="when-to-make-classes-immutable"><a href="#when-to-make-classes-immutable" class="headerlink" title="when to make classes immutable"></a>when to make classes immutable</h3><ul>
+<li><strong>Always</strong>, unless there’s a good reason not to</li>
+<li>Always make small “value classes” immutable!<br>  Examples: Color, PhoneNumber, Unit<br>  Date and Point were mistakes! (Experts often use long instead of Date)</li>
+</ul>
+<h3 id="when-to-make-classes-mutable"><a href="#when-to-make-classes-mutable" class="headerlink" title="when to make classes mutable"></a>when to make classes mutable</h3><ul>
+<li>Class represents entity whose <strong>state changes</strong><br>  Real-world: BankAccount, TrafficLight<br>  Abstract: Iterator, Matcher, Collection<br>  Process classes: Thread, Timer</li>
+<li>If class must be mutable, <strong>minimize mutability</strong><br>  Constructors should fully initialize instance<br>  Avoid reinitialize methods</li>
+</ul>
+
+    </div>
+
+    <div class="about">
+        <h1>About this Post</h1>
+        <p>This post is written by Marcus Lee, licensed under <a
+                target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc/4.0">CC BY-NC 4.0</a>.</p>
+    </div>
+
+    
+        
+    
+</article>
+        <footer>
+    <div class="inner">
+        <div class="links">
+            
+            <div class="group">
+                <h4 class="title">Blog</h4>
+                
+                <a href="/" class="item" target="_blank">Blog</a>
+                
+                <a href="/archives" class="item" target="_blank">Archives</a>
+                
+                <a href="/friends" class="item" target="_blank">Friends</a>
+                
+                <a href="/projects" class="item" target="_blank">Projects</a>
+                
+                <a href="/resume" class="item" target="_blank">Resume</a>
+                
+                <a href="/about" class="item" target="_blank">About</a>
+                
+                <a href="/atom.xml" class="item" target="_blank">RSS</a>
+                
+            </div>
+            
+            <div class="group">
+                <h4 class="title">Projects</h4>
+                
+                <a href="https://github.com/transmister" class="item" target="_blank">Transmister</a>
+                
+                <a href="https://github.com/MrWillCom/css-and-js-windows-uwp-xaml-controls" class="item" target="_blank">CSS&amp;JS Windows UWP XAML Controls</a>
+                
+                <a href="https://github.com/MrWillCom/hexo-theme-cupertino" class="item" target="_blank">Theme Cupertino</a>
+                
+                <a href="https://github.com/MrWillCom/github-dark-mode" class="item" target="_blank">GitHub Dark Mode</a>
+                
+            </div>
+            
+            <div class="group">
+                <h4 class="title">Me</h4>
+                
+                <a href="https://github.com/MarkusLee" class="item" target="_blank">GitHub</a>
+                
+                <a href="mailto:lxmarcus@foxmail.com" class="item" target="_blank">Email</a>
+                
+            </div>
+            
+        </div>
+        &copy; 2021 Marcus Lee<br />
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+</footer>
+
+        
+<script src="/js/main.js"></script>
+
+        
+    </body>
+</html>
