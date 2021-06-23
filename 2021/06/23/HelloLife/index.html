@@ -171,18 +171,18 @@
 <p>预处理是C语言的一个重要功能，它由预处理程序负责完成。当对一个源文件进行编译时，系统将自动引用预处理程序对源程序中的预处理部分作处理，处理完毕自动进入对源程序的编译。C语言提供多种预处理功能，主要处理 “#” 开始的预编译指令，如宏定义 (#define) 、文件包含 (#include) 、条件编译 (#ifdef) 等。合理使用预处理功能编写的程序便于阅读、修改、移植和调试，也有利于模块化程序设计。</p>
 <h2 id="2-2在Ubuntu下预处理的命令"><a href="#2-2在Ubuntu下预处理的命令" class="headerlink" title="2.2在Ubuntu下预处理的命令"></a>2.2在Ubuntu下预处理的命令</h2><p>gcc -m64 -Og -no-pie -fno-PIC -E hello.c -o hello.i</p>
 <p>bash中输入命令，目录下生成 hello.i 文件。</p>
-<p> <img src="/./HelloLife/image-20210623163017684.png" alt="image-20210623163017684"></p>
+<p> <img src="/2021/06/23/HelloLife/image-20210623163017684.png" alt="image-20210623163017684"></p>
 <p>图2-1 bash中预处理命令</p>
-<p> <img src="/HelloLife/image-20210623163022054.png" alt="image-20210623163022054"></p>
+<p> <img src="/2021/06/23/HelloLife/image-20210623163022054.png" alt="image-20210623163022054"></p>
 <p>图2-2 预处理生成文件hello.i</p>
 <h2 id="2-3-Hello的预处理结果解析"><a href="#2-3-Hello的预处理结果解析" class="headerlink" title="2.3 Hello的预处理结果解析"></a>2.3 Hello的预处理结果解析</h2><p>hello.c中只使用了 #include 方法，所以预处理所做的只是去除所有的注释，然后把所包含的头文件（以及头文件中所包含的头文件）全部展开，依次加到预处理后文件中，例如函数声明、结构体定义、宏定义等。</p>
 <p>最后是hello.c中的main函数代码，并没有对该函数进行改动。</p>
 <p>不包含注释，hello.c一共为22行，预处理之后变为3904行，长度大大增加。</p>
-<p> <img src="/HelloLife/image-20210623163029745.png" alt="image-20210623163029745"></p>
+<p> <img src="/2021/06/23/HelloLife/image-20210623163029745.png" alt="image-20210623163029745"></p>
 <p>图2-3 hello.i中部分代码截图（1）</p>
-<p> <img src="/HelloLife/image-20210623163034757.png" alt="image-20210623163034757"></p>
+<p> <img src="/2021/06/23/HelloLife/image-20210623163034757.png" alt="image-20210623163034757"></p>
 <p>图2-4 hello.i中部分代码截图（2）</p>
-<p> <img src="/HelloLife/image-20210623163040746.png" alt="image-20210623163040746"></p>
+<p> <img src="/2021/06/23/HelloLife/image-20210623163040746.png" alt="image-20210623163040746"></p>
 <p>图2-5 最后为hello.c中的原始函数</p>
 <h2 id="2-4-本章小结"><a href="#2-4-本章小结" class="headerlink" title="2.4 本章小结"></a>2.4 本章小结</h2><p>本章介绍了预处理的概念及其作用，并且通过命令行使用gcc对hello.c进行了预处理，生成了预处理后的文件hello.i，并对其进行了分析。</p>
 <h1 id="第3章-编译"><a href="#第3章-编译" class="headerlink" title="第3章 编译"></a>第3章 编译</h1><h2 id="3-1-编译的概念与作用"><a href="#3-1-编译的概念与作用" class="headerlink" title="3.1 编译的概念与作用"></a>3.1 编译的概念与作用</h2><p>注意：这儿的编译是指从 .i 到 .s 即预处理后的文件到生成汇编语言程序</p>
@@ -190,56 +190,56 @@
 <p>编译除了为下一步汇编做好准备，同时也包含了一部分优化的工作，例如删除公共表达式、循环优化（代码外提、强度削弱、变换循环控制条件、已知量的合并等）、复写传播，以及无用赋值的删除，等等。</p>
 <h2 id="3-2-在Ubuntu下编译的命令"><a href="#3-2-在Ubuntu下编译的命令" class="headerlink" title="3.2 在Ubuntu下编译的命令"></a>3.2 在Ubuntu下编译的命令</h2><p>gcc -m64 -Og -no-pie -fno-PIC -S hello.i -o hello.s</p>
 <p>bash中输入命令，目录下生成 hello.s 文件。</p>
-<p> <img src="/HelloLife/image-20210623163053918.png" alt="image-20210623163053918"></p>
+<p> <img src="/2021/06/23/HelloLife/image-20210623163053918.png" alt="image-20210623163053918"></p>
 <p>图3-1 bash中编译命令</p>
-<p> <img src="/HelloLife/image-20210623163057492.png" alt="image-20210623163057492"></p>
+<p> <img src="/2021/06/23/HelloLife/image-20210623163057492.png" alt="image-20210623163057492"></p>
 <p>图3-2 编译后生成hello.s</p>
 <h2 id="3-3-Hello的编译结果解析"><a href="#3-3-Hello的编译结果解析" class="headerlink" title="3.3 Hello的编译结果解析"></a>3.3 Hello的编译结果解析</h2><p>3.3.1 字符串</p>
 <p>第一个字符串是 printf()的参数：”用法: Hello 学号 姓名 秒数！\n”<br> 在汇编文件中保存为如下格式：</p>
-<p> <img src="/HelloLife/image-20210623163103356.png" alt="image-20210623163103356"></p>
+<p> <img src="/2021/06/23/HelloLife/image-20210623163103356.png" alt="image-20210623163103356"></p>
 <p>图3-3 “用法: Hello 学号 姓名 秒数！\n”</p>
 <p>其中，中文字符以\xxx的三位八进制转义方式保存，三个连续的三位八进制数表示一个UTF-8编码的中文字符，在内存中占3个字节。</p>
 <p>  第二个字符串也是printf()的参数：”Hello %s %s\n”，在汇编文件中的表示方式如下：</p>
-<p> <img src="/HelloLife/image-20210623163109087.png" alt="image-20210623163109087"></p>
+<p> <img src="/2021/06/23/HelloLife/image-20210623163109087.png" alt="image-20210623163109087"></p>
 <p>图3-4 “Hello %s %s\n”</p>
 <p>3.3.2 整型</p>
 <p>  int i 是循环的计数器，虽然在一开始被定义，但是直到后面的循环开始时才在汇编代码中出现，存储在 %ebp 寄存器中。</p>
-<p> <img src="/HelloLife/image-20210623163113705.png" alt="image-20210623163113705"></p>
+<p> <img src="/2021/06/23/HelloLife/image-20210623163113705.png" alt="image-20210623163113705"></p>
 <p>图3-5 初始化int i的汇编代码</p>
 <p>  int argc 作为 main 函数的参数传入，表示 argv 中参数的个数。存储在 %edi 寄存器中。</p>
-<p> <img src="/HelloLife/image-20210623163123211.png" alt="image-20210623163123211"></p>
+<p> <img src="/2021/06/23/HelloLife/image-20210623163123211.png" alt="image-20210623163123211"></p>
 <p>图3-6 argc存储在%edi中</p>
 <p>exit(1), argv[1], argv[2], argv[3], argc != 4, … 中的整型是幻数(magic number)，在汇编代码中表现为立即数。</p>
 <p>3.3.3 数组</p>
 <p>  char *argv[] 字符串指针数组，是 main 的参数，即以空格分割的命令行参数。其中每个元素为char *，大小为8 bytes，依次存储在一块连续的内存空间中。在程序中，该数组的起始地址通过 %rsi 传入，然后被保存到 %rbx 中。</p>
-<p> <img src="/HelloLife/image-20210623163129497.png" alt="image-20210623163129497"></p>
+<p> <img src="/2021/06/23/HelloLife/image-20210623163129497.png" alt="image-20210623163129497"></p>
 <p>图3-7 数组地址保存在%rbx中</p>
 <p>3.3.4 赋值</p>
 <p>  i = 0 在3.3.2节中，可以看到，汇编代码通过 movl 语句，将立即数 $0 赋给 %ebp，从而对i赋初值。</p>
 <p>3.3.5 类型转换</p>
 <p>atoi(argv[3]) 将字符串转成对应的整型变量。在汇编代码中，首先将 argv[3]的地址存储到 %rdi 中，作为调用函数的传入参数，然后调用 strtol ，该函数的作用是将字符串转换成长整型。最后将结果保存在 %rax 中然后返回。</p>
-<p> <img src="/HelloLife/image-20210623163137056.png" alt="image-20210623163137056"></p>
+<p> <img src="/2021/06/23/HelloLife/image-20210623163137056.png" alt="image-20210623163137056"></p>
 <p>图3-8 调用strtol转换</p>
 <p>3.3.6 算术操作</p>
 <p>i++ : i自增1，在汇编代码中，使用addl进行此操作，给 %ebp 中存的值加上一个立即数 $1。</p>
-<p> <img src="/HelloLife/image-20210623163141706.png" alt="image-20210623163141706"></p>
+<p> <img src="/2021/06/23/HelloLife/image-20210623163141706.png" alt="image-20210623163141706"></p>
 <p>图3-9 i++对应的汇编代码</p>
 <p>3.3.7 关系操作</p>
 <p>  argc != 4 ：使用cmpl，将存储在 %edi 中的 argc 与立即数 $1 相比较，设置flag bits，之后配合 jne 判断ZF是否等于0，实现条件跳转</p>
-<p> <img src="/HelloLife/image-20210623163147178.png" alt="image-20210623163147178"></p>
+<p> <img src="/2021/06/23/HelloLife/image-20210623163147178.png" alt="image-20210623163147178"></p>
 <p>图3-10 将argc与4比较</p>
 <p>  i &lt; 8 ：使用cmpl，将存储在 %ebp 中的 i 与立即数 $7 相比较，设置flag bits，之后配合 jle 判断（实现条件跳转）</p>
-<p> <img src="/HelloLife/image-20210623163154786.png" alt="image-20210623163154786"></p>
+<p> <img src="/2021/06/23/HelloLife/image-20210623163154786.png" alt="image-20210623163154786"></p>
 <p>图3-11 将i与8比较</p>
 <p>3.3.8 指针操作</p>
 <p>  argv[1], argv[2], argv[3]：由于数组是存储在一块连续的内存空间中的，所以可以通过相对偏移来访问数组元素。例如，argv[2]在汇编中的访问操作如下：</p>
-<p> <img src="/HelloLife/image-20210623163159660.png" alt="image-20210623163159660"></p>
+<p> <img src="/2021/06/23/HelloLife/image-20210623163159660.png" alt="image-20210623163159660"></p>
 <p>图3-12 访问argv[2]</p>
 <p>%rbx 是 argv 的起始地址，其中每个元素占8个字节，所以 argv[2] 相对起始地址偏移量为 2 * 8 = 16，所以使用 16(%rbx) 来访问 argv[2]。</p>
 <p>3.3.9 控制转移</p>
 <p>  if (argc != 4)：见3.3.7节</p>
 <p>  for (i = 0; i &lt; 8; i++): 首先通过28行的语句，将 %ebp 即 i 初始化为0，然后跳转至50行，判断循环继续的条件，如果满足就跳转到36行，执行循环中的代码。每次循环结束后，在48行执行 i++,然后再次判断循环继续的条件。直到不满足条件，就不进行51行的跳转。</p>
-<p> <img src="/HelloLife/image-20210623163214344.png" alt="image-20210623163214344"></p>
+<p> <img src="/2021/06/23/HelloLife/image-20210623163214344.png" alt="image-20210623163214344"></p>
 <p>图3-13 for循环过程</p>
 <p>3.3.10 函数操作</p>
 <p>  在64位模式下，函数参数是按照 %rdi, %rsi, %rdx, %rcx, %r8, %r9，stack… 的顺序传入被调用函数的，返回值保存在 %rax 中返回给调用者。</p>
@@ -254,9 +254,9 @@
 <p>汇编是指把汇编语言翻译成机器语言（即二进制目标文件）的过程。汇编器能够将汇编语言翻译成二进制的机器指令，生成可重定位目标文件。</p>
 <h2 id="4-2-在Ubuntu下汇编的命令"><a href="#4-2-在Ubuntu下汇编的命令" class="headerlink" title="4.2 在Ubuntu下汇编的命令"></a>4.2 在Ubuntu下汇编的命令</h2><p>gcc -m64 -Og -no-pie -fno-PIC -c hello.s -o hello.o</p>
 <p>bash中输入命令，目录下生成 hello.o 文件。</p>
-<p> <img src="/HelloLife/image-20210623163227290.png" alt="image-20210623163227290"></p>
+<p> <img src="/2021/06/23/HelloLife/image-20210623163227290.png" alt="image-20210623163227290"></p>
 <p>图4-1 bash中汇编命令</p>
-<p> <img src="/HelloLife/image-20210623163230707.png" alt="image-20210623163230707"></p>
+<p> <img src="/2021/06/23/HelloLife/image-20210623163230707.png" alt="image-20210623163230707"></p>
 <p>图4-2 汇编生成hello.o</p>
 <h2 id="4-3-可重定位目标elf格式"><a href="#4-3-可重定位目标elf格式" class="headerlink" title="4.3 可重定位目标elf格式"></a>4.3 可重定位目标elf格式</h2><p>分析hello.o的ELF格式，用readelf等列出其各节的基本信息，特别是重定位项目分析。</p>
 <p>.text：已编译程序的机器码</p>
@@ -270,11 +270,11 @@
 <p>.symtab：存储程序中定义和引用的函数和全局变量信息</p>
 <p>.strtab：.symtab和.debug中符号表以及节头部中节的名字</p>
 <p>.shstrtab：段表字符串表，存储section的名字</p>
-<p> <img src="/HelloLife/image-20210623163241486.png" alt="image-20210623163241486"></p>
+<p> <img src="/2021/06/23/HelloLife/image-20210623163241486.png" alt="image-20210623163241486"></p>
 <p>图4-3 hello.o的段头部表</p>
 <p>.rela.text .是存储 .text节中的重定位位置的列表，含有该.text中所需要进行重定位操作的信息，在链接时，这些位置将会被修改。其中Offset是需要重定位的信息偏移位置；Type显示重定位的类型；Symbol是被重定位时指向的符号；Append部分重定位过程中需使用它作偏移调整）</p>
 <p>其中包括两次调用printf中的字符串(.rodata.str1.8, .rodata.str1.1)，还有main中调用的各种函数。</p>
-<p> <img src="/HelloLife/image-20210623163250476.png" alt="image-20210623163250476"></p>
+<p> <img src="/2021/06/23/HelloLife/image-20210623163250476.png" alt="image-20210623163250476"></p>
 <p>图4-4 .rela.text重定位段</p>
 <h2 id="4-4-Hello-o的结果解析"><a href="#4-4-Hello-o的结果解析" class="headerlink" title="4.4 Hello.o的结果解析"></a>4.4 Hello.o的结果解析</h2><p>说明机器语言的构成，与汇编语言的映射关系。特别是机器语言中的操作数与汇编语言不一致，特别是分支转移函数调用等。</p>
 <p>总体上，反汇编的结果与hello.s十分类似，但是在以下几点上有明显的不同：</p>
@@ -287,9 +287,9 @@
 <p>链接的作用是将一个目标文件(hello.o)或多个目标文件外加库链接合并为一个可执行目标文件(hello)，可执行目标文件可以被加载到内存中，由系统执行。</p>
 <h2 id="5-2-在Ubuntu下链接的命令"><a href="#5-2-在Ubuntu下链接的命令" class="headerlink" title="5.2 在Ubuntu下链接的命令"></a>5.2 在Ubuntu下链接的命令</h2><p>ld -o hello -dynamic-linker /lib64/ld-linux-x86-64.so.2 /usr/lib/x86_64-linux-gnu/crt1.o /usr/lib/x86_64-linux-gnu/crti.o hello.o /usr/lib/x86_64-linux-gnu/libc.so /usr/lib/x86_64-linux-gnu/crtn.o</p>
 <p>bash中输入命令，目录下生成 hello文件。</p>
-<p> <img src="/HelloLife/image-20210623163302227.png" alt="image-20210623163302227"></p>
+<p> <img src="/2021/06/23/HelloLife/image-20210623163302227.png" alt="image-20210623163302227"></p>
 <p>图5-1 bash中输入链接命令</p>
-<p> <img src="/HelloLife/image-20210623163305524.png" alt="image-20210623163305524"></p>
+<p> <img src="/2021/06/23/HelloLife/image-20210623163305524.png" alt="image-20210623163305524"></p>
 <p>图5-2 链接后生成hello</p>
 <h2 id="5-3-可执行目标文件hello的格式"><a href="#5-3-可执行目标文件hello的格式" class="headerlink" title="5.3 可执行目标文件hello的格式"></a>5.3 可执行目标文件hello的格式</h2><p>分析hello的ELF格式，用readelf等列出其各段的基本信息，包括各段的起始地址，大小等信息。</p>
 <p>.plt：procedure linkage table，用于定位过程的数据信息，保存了某些符号在重定位表中的偏移量和对应的.got.plt的对应的地址。</p>
@@ -303,32 +303,32 @@
 <p>.symtab：存储程序中定义和引用的函数和全局变量信息</p>
 <p>.strtab：.symtab和.debug中符号表以及节头部中节的名字</p>
 <p>.shstrtab：段表字符串表，存储section的名字</p>
-<p> <img src="/HelloLife/image-20210623163312109.png" alt="image-20210623163312109"></p>
+<p> <img src="/2021/06/23/HelloLife/image-20210623163312109.png" alt="image-20210623163312109"></p>
 <p>图5-3 hello的段头部表（1）</p>
-<p> <img src="/HelloLife/image-20210623163317744.png" alt="image-20210623163317744"></p>
+<p> <img src="/2021/06/23/HelloLife/image-20210623163317744.png" alt="image-20210623163317744"></p>
 <p>图5-4 hello的段头部表（2）</p>
 <h2 id="5-4-hello的虚拟地址空间"><a href="#5-4-hello的虚拟地址空间" class="headerlink" title="5.4 hello的虚拟地址空间"></a>5.4 hello的虚拟地址空间</h2><p>使用edb加载hello，查看本进程的虚拟地址空间各段信息，并与5.3对照分析说明。  </p>
 <p>hello进程的在虚拟地址空间中，起始地址为0x400000，与5.3中通过readelf所获取的各段起始地址直接对应，section header中address项所对应的值即为各个段的在虚拟地址空间中的起始地址。</p>
 <p>例如：从section header表中可以看出 .text 段的起始地址为0x4010f0，则在edb 的 Data Dump 中找到4010f0，即为 .text 段。</p>
-<p> <img src="/HelloLife/image-20210623163323544.png" alt="image-20210623163323544"></p>
+<p> <img src="/2021/06/23/HelloLife/image-20210623163323544.png" alt="image-20210623163323544"></p>
 <p>图5-5 hello虚拟地址空间各段</p>
-<p> <img src="/HelloLife/image-20210623163326988.png" alt="image-20210623163326988"></p>
+<p> <img src="/2021/06/23/HelloLife/image-20210623163326988.png" alt="image-20210623163326988"></p>
 <p>图5-6 hello虚拟地址空间.text段</p>
 <h2 id="5-5-链接的重定位过程分析"><a href="#5-5-链接的重定位过程分析" class="headerlink" title="5.5 链接的重定位过程分析"></a>5.5 链接的重定位过程分析</h2><p>5.5.1 函数解析</p>
 <p>在使用ld命令链接的时候，使用的动态链接器为 /lib64/ld-linux-x86-64.so.2, 除hello.o外，其余参加链接过程的目标文件有crt1.o, crti.o，crtn.o, libc.so，这些文件包含了程序入口_start、初始化函数_init、_start中调用的__libc_csu_init，__libc_csu_fini等。在链接过程中，链接器将这些函数直接加入到生成的目标文件中。</p>
-<p> <img src="/HelloLife/image-20210623163331914.png" alt="image-20210623163331914"></p>
+<p> <img src="/2021/06/23/HelloLife/image-20210623163331914.png" alt="image-20210623163331914"></p>
 <p>图5-7 hello反汇编中_start函数</p>
 <p>hello.o中对外部函数调用（puts, __printf_chk, sleep, getc, exit, strtol等函数）的类型为R_X86_64_PLT32的重定位，此时动态链接库中的函数已经加入到了PLT中，由于.text与.plt节相对距离已经确定，链接器计算相对距离，将对动态链接库中函数的调用值改为 .plt 中相应函数与下条指令的相对地址，指向对应函数。同时，链接器为其构造.plt与.plt.sec。</p>
 <p>5.5.2 .rodata引用</p>
 <p>hello.o中存在两个类型为R_X86_64_32的对.rodata的重定位（printf中的两个字符串）。由于.rodata与.text节之间的相对距离确定，因此链接器直接修改call之后的值为目标地址与下一条指令的地址之差，指向相应的字符串。</p>
-<p> <img src="/HelloLife/image-20210623163338302.png" alt="image-20210623163338302"></p>
+<p> <img src="/2021/06/23/HelloLife/image-20210623163338302.png" alt="image-20210623163338302"></p>
 <p>图5-8 hello.o中引用.rodata.str1.8</p>
-<p> <img src="/HelloLife/image-20210623163341567.png" alt="image-20210623163341567"></p>
+<p> <img src="/2021/06/23/HelloLife/image-20210623163341567.png" alt="image-20210623163341567"></p>
 <p>图5-9 hello中引用.rodata.str1.8</p>
 <h2 id="5-6-hello的执行流程"><a href="#5-6-hello的执行流程" class="headerlink" title="5.6 hello的执行流程"></a>5.6 hello的执行流程</h2><p>使用edb执行hello，分析从加载hello到_start，到call main,以及程序终止的所有过程，得出如下结论：</p>
 <p>在main函数之前执行的程序有：_start, _init, __libc_csu_init , __libc_start_main_init、frame_dummy、register_tm_clones。然后执行main函数，其中依次调用了puts, __printf_chk, strtol, sleep, getc, (exit, )。在main函数之后执行的函数有：_fini, __run_exit_handlers, __lll_cas_lock。</p>
 <h2 id="5-7-Hello的动态链接分析"><a href="#5-7-Hello的动态链接分析" class="headerlink" title="5.7 Hello的动态链接分析"></a>5.7 Hello的动态链接分析</h2><p>动态链接的基本思想是把程序按照模块拆分成各个相对独立部分，在程序运行时才将它们链接在一起形成一个完整的程序，而不是像静态链接一样把所有程序模块都链接成一个单独的可执行文件。虽然动态链接把链接过程推迟到了程序运行时，但是在形成可执行文件时还是需要用到动态链接库。</p>
-<p> <img src="/HelloLife/image-20210623163348480.png" alt="image-20210623163348480"></p>
+<p> <img src="/2021/06/23/HelloLife/image-20210623163348480.png" alt="image-20210623163348480"></p>
 <p>图5-10 dl_init之后</p>
 <h2 id="5-8-本章小结"><a href="#5-8-本章小结" class="headerlink" title="5.8 本章小结"></a>5.8 本章小结</h2><p>本章介绍了程序的链接过程，通过elf文件结构和反汇编代码，静态对比了程序链接前后的变化；同时又通过edb调试运行，分析了程序运行的流程。对于链接的流程与作用有了更深的了解。</p>
 <h1 id="第6章-hello进程管理"><a href="#第6章-hello进程管理" class="headerlink" title="第6章 hello进程管理"></a>第6章 hello进程管理</h1><h2 id="6-1-进程的概念与作用"><a href="#6-1-进程的概念与作用" class="headerlink" title="6.1 进程的概念与作用"></a>6.1 进程的概念与作用</h2><p>进程（Process）是计算机中的程序关于某数据集合上的一次运行活动，是系统进行资源分配和调度的基本单位，是操作系统结构的基础。程序是指令、数据及其组织形式的描述，进程是程序的实体。进程是一个具有独立功能的程序关于某个数据集合的一次运行活动。它可以申请和拥有系统资源，是一个动态的概念，是一个活动的实体。它不只是程序的代码，还包括当前的活动，通过程序计数器的值和处理寄存器的内容来表示。</p>
@@ -337,9 +337,9 @@
 <h2 id="6-3-Hello的fork进程创建过程"><a href="#6-3-Hello的fork进程创建过程" class="headerlink" title="6.3 Hello的fork进程创建过程"></a>6.3 Hello的fork进程创建过程</h2><p>一个进程，包括代码、数据和分配给进程的资源。fork函数通过系统调用创建一个与原来进程几乎完全相同的进程，也就是两个进程可以做完全相同的事，但如果初始参数或者传入的变量不同，两个进程也可以做不同的事。一个进程调用fork函数后，系统先给新的进程分配资源，例如存储数据和代码的空间。然后把原来的进程的所有值都复制到新的新进程中，只有少数值与原来的进程的值不同。相当于克隆了一个自己。在fork函数执行完毕后，如果创建新进程成功，则出现两个进程，一个是子进程，一个是父进程。在子进程中，fork函数返回0，在父进程中，fork返回新创建子进程的进程ID。我们可以通过fork返回的值来判断当前进程是子进程还是父进程。</p>
 <h2 id="6-4-Hello的execve过程"><a href="#6-4-Hello的execve过程" class="headerlink" title="6.4 Hello的execve过程"></a>6.4 Hello的execve过程</h2><p>execve函数在当前进程(bash)的上下文中加载并运行可执行目标文件hello，并且带参数列表argv和环境变量envp。如果出现错误，例如找不到filename（hello），execve才会返回到调用程序。与fork一次调用返回两次不同，execve调用一次并从不返回。</p>
 <p>在execve加载了hello之后，它会调用启动代码（_start, __libc_start_main）。启动代码设置栈，并将控制传递给hello的main函数。</p>
-<p><img src="/HelloLife/image-20210623163402283.png" alt="image-20210623163402283"></p>
+<p><img src="/2021/06/23/HelloLife/image-20210623163402283.png" alt="image-20210623163402283"></p>
 <p>图6-1 hello进程的argv和envp</p>
-<p> <img src="/HelloLife/image-20210623163405908.png" alt="image-20210623163405908"></p>
+<p> <img src="/2021/06/23/HelloLife/image-20210623163405908.png" alt="image-20210623163405908"></p>
 <p>图6-2 hello进程的栈空间示意图</p>
 <h2 id="6-5-Hello的进程执行"><a href="#6-5-Hello的进程执行" class="headerlink" title="6.5 Hello的进程执行"></a>6.5 Hello的进程执行</h2><p>结合进程上下文信息、进程时间片，阐述进程调度的过程，用户态与核心态转换等等。</p>
 <p>运行hello的同时，系统中有其他程序在运行，但是进程可以让hello程序认为它在独占地使用处理器。在有多个进程并行的时候，hello执行它的流的一部分，然后被抢占，轮到其他进程。</p>
@@ -351,7 +351,7 @@
 <p>不停乱按，回车：会在屏幕上显示出对应的输入，但一般不会干扰程序的正常运行。</p>
 <p>Ctrl-C：终止hello进程。同时父进程（此处为bash）会回收子进程</p>
 <p>Ctrl-Z：挂起hello进程，可以运行ps jobs pstree fg kill 等命令</p>
-<p><img src="/HelloLife/image-20210623163419191.png" alt="image-20210623163419191"></p>
+<p><img src="/2021/06/23/HelloLife/image-20210623163419191.png" alt="image-20210623163419191"></p>
 <p>图6-3 程序挂起时调用内置命令</p>
 <h2 id="6-7本章小结"><a href="#6-7本章小结" class="headerlink" title="6.7本章小结"></a>6.7本章小结</h2><p>本章介绍了进程的概念和作用，并且结合hello进程的运行，分析了bash的处理流程，hello的fork，execve的执行过程，最后通过将hello进程挂起和终止，分析了hello的异常与信号处理。</p>
 <h1 id="第7章-hello的存储管理"><a href="#第7章-hello的存储管理" class="headerlink" title="第7章 hello的存储管理"></a>第7章 hello的存储管理</h1><h2 id="7-1-hello的存储器地址空间"><a href="#7-1-hello的存储器地址空间" class="headerlink" title="7.1 hello的存储器地址空间"></a>7.1 hello的存储器地址空间</h2><p>逻辑地址：由程序产生的与段有关的偏移地址。分为两个部分，一个部分为段基址，另一个部分为段偏移量。在hello.o中即为相对偏移地址。</p>
@@ -364,7 +364,7 @@
 <h2 id="7-4-TLB与四级页表支持下的VA到PA的变换"><a href="#7-4-TLB与四级页表支持下的VA到PA的变换" class="headerlink" title="7.4 TLB与四级页表支持下的VA到PA的变换"></a>7.4 TLB与四级页表支持下的VA到PA的变换</h2><p>Linux采用4级页表的方案，这四级列表分别为PGD（Page Global directory页全局目录），PUD（Page Upper Directory页上级目录），PMD（Page middle directory页中间目录），PTE（Page table entry页表项）。</p>
 <p>多级页表节省空间的同时，也带来了一定的问题，例如一次VA到PA的转换需要进行在四级的页表中进行多次查找，开销增加，因此使用TLB（Translation Lookaside Buffer）将页表内容缓存起来。TLB是一个小的、虚拟寻址的缓存，其中每一行都保存着一个由单个PTE组成的块。TLB通常有高度的相联度。用于组选择和行匹配的索引和标记字段是从虚拟地址中的虚拟页号中提取出来的。如果TLB有  个组，那么TLB索引(TLBI)是由VPN的t个最低位组成的，而TLB标记(TLBT)是由VPN中剩余的位组成的。</p>
 <p>对于一个给定的虚拟地址VA，MMU先在TLB中进行查询，如果有就直接返回对应的PA，如果不命中，那么再去四级页表中查找。先首先根据地址中第一部分的VPN找到PGD中的条目，指向某个特定的PUD；然后根据地址中第二部分的VPN在该PUD中找到对应的条目，指向某个特定的PMD；再根据地址中第三部分的VPN在该PMD中找到对应的条目，指向某个特定的PT；最后根据地址中第四部分的VPN在该PT中找到对应的PTE，再加上VPO（PPO）得到目标物理地址。</p>
-<p> <img src="/HelloLife/image-20210623163436733.png" alt="image-20210623163436733"></p>
+<p> <img src="/2021/06/23/HelloLife/image-20210623163436733.png" alt="image-20210623163436733"></p>
 <p>图7-1 Linux下四级页表寻址示意图</p>
 <h2 id="7-5-三级Cache支持下的物理内存访问"><a href="#7-5-三级Cache支持下的物理内存访问" class="headerlink" title="7.5 三级Cache支持下的物理内存访问"></a>7.5 三级Cache支持下的物理内存访问</h2><p>在得到物理地址之后，先根据CI组索引，在L1 cache 找到对应的组，对组中各个路的块分别检查CT，如果在此过程中匹配成功，并且块的有效位为1。则缓存命中，根据CO取出数据后返回；</p>
 <p>如果匹配不成功但有效位为1，则判断不命中，继续向下一级缓存中查询数据（L1 → L2 → L3 → 主存 → … ）。查到数据后，如果映射到的组内存在空闲块，则直接将其放置进去，否则产生冲突，通过使用LRU进行替换。</p>
