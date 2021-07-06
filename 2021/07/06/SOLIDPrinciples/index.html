@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+  
+  <title>SOLIDPrinciples - MarcusLee&#39;s Blog</title>
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    <link rel='manifest' href='/manifest.json'>
+  
+
+  
+<link rel="stylesheet" href="/css/var.css">
+
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<link rel="stylesheet" href="/css/typography.css">
+
+  
+<link rel="stylesheet" href="/css/code-highlighting.css">
+
+  
+<link rel="stylesheet" href="/css/components.css">
+
+  
+<link rel="stylesheet" href="/css/nav.css">
+
+  
+<link rel="stylesheet" href="/css/paginator.css">
+
+  
+<link rel="stylesheet" href="/css/footer.css">
+
+  
+<link rel="stylesheet" href="/css/post-list.css">
+
+  
+<link rel="stylesheet" href="/css/waline.css">
+
+  
+  
+  
+<link rel="stylesheet" href="/css/post.css">
+
+  
+
+  
+<meta name="generator" content="Hexo 5.4.0"></head>
+    <body>
+        <nav id="theme-nav">
+    <div class="inner">
+        <a class="title" href="/">Marcus Lee</a>
+        <div class="nav-arrow"></div>
+        <div class="nav-items">
+            <a class="nav-item nav-item-home" href="/">Home</a>
+            
+            
+            <a class="nav-item" href="/archives">Archives</a>
+            
+            
+            
+            <a class="nav-item" href="/friends">Friends</a>
+            
+            
+            
+            <a class="nav-item" href="/projects">Projects</a>
+            
+            
+            
+            <a class="nav-item" href="/about">About</a>
+            
+            
+            
+            <a class="nav-item nav-item-github nav-item-icon" href="https://github.com/MarkusLee" target="_blank">&nbsp;</a>
+            
+            
+        </div>
+    </div>
+</nav>
+        <article class="post">
+    <div class="meta">
+        
+        <div class="date" id="date">
+            
+            
+            
+            
+            
+            
+            
+            <span>July</span>
+            
+            
+            
+            
+            
+            
+            <span>6,</span>
+            <span>2021</span>
+        </div>
+        
+
+        <h2 class="title">SOLIDPrinciples</h2>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content">
+        <h1 id="OO-Design-Principles-SOLID"><a href="#OO-Design-Principles-SOLID" class="headerlink" title="OO Design Principles: SOLID"></a>OO Design Principles: SOLID</h1><h2 id="SRP-Single-Responsibility-Principle"><a href="#SRP-Single-Responsibility-Principle" class="headerlink" title="SRP: Single Responsibility Principle"></a>SRP: Single Responsibility Principle</h2><blockquote>
+<p>“There should never be more than one reason for a class to change”,</p>
+<p>i.e., a class should concentrate on doing one thing and one thing only</p>
+</blockquote>
+<ul>
+<li><em>responsibility</em>: a reason for change</li>
+</ul>
+<h2 id="OCP-Open-Closed-Principle"><a href="#OCP-Open-Closed-Principle" class="headerlink" title="OCP: Open/Closed Principle"></a>OCP: Open/Closed Principle</h2><blockquote>
+<p>“Classes should be open for extension, but closed for modification.”</p>
+</blockquote>
+<ul>
+<li><p><strong>open</strong> for extension,</p>
+<ul>
+<li>This means that the behaviour of the module can be extended. That we can make the module behave in new and different ways as the requirements of the application change, or to meet the needs of new applications. </li>
+</ul>
+</li>
+<li><p><strong>closed</strong> for modification</p>
+<ul>
+<li>The source code of such a module is inviolate. No one is allowed to make source code changes to it.</li>
+<li>The normal way to extend the behaviour of a module is to make changes to that module.</li>
+<li>A module that cannot be changed is normally thought to have a fixed behaviour.</li>
+</ul>
+</li>
+<li><p>Key: <strong>abstraction</strong></p>
+</li>
+</ul>
+<h2 id="LSP-Liskov-Substitution-Principle"><a href="#LSP-Liskov-Substitution-Principle" class="headerlink" title="LSP: Liskov Substitution Principle"></a>LSP: Liskov Substitution Principle</h2><blockquote>
+<p>“Functions that use pointers or references to base classes must be able to use objects of derived classes without knowing it”,</p>
+<p>i.e., subclasses should behave nicely when used in place of their base class</p>
+</blockquote>
+<ul>
+<li>Subtypes must be substitutable for their base types.</li>
+<li>Derived Classes must be usable through the base class interface without the need for the client to know the difference.</li>
+</ul>
+<h2 id="ISP-Interface-Segregation-Principle"><a href="#ISP-Interface-Segregation-Principle" class="headerlink" title="ISP: Interface Segregation Principle"></a>ISP: Interface Segregation Principle</h2><blockquote>
+<p>“Clients should not be forced to depend upon interfaces that they do not use“, </p>
+<p>i.e., keep interfaces small.</p>
+</blockquote>
+<ul>
+<li><p>Don’t force classes so implement methods they can’t.</p>
+</li>
+<li><p>Don’t pollute interfaces with a lot of methods.</p>
+</li>
+<li><p>Avoid “fat” interfaces.</p>
+</li>
+<li><p><em>fat interface</em>: classes whose interfaces are not cohesive</p>
+<ul>
+<li>The interfaces of the class can be broken up into groups of member functions.</li>
+<li>Each group serves a different set of clients.</li>
+<li>Thus some clients use one group of member functions, and other clients use the other groups.</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2021/07/06/SOLIDPrinciples/image-20210706234328874.png" alt="image-20210706234328874"></p>
+<h2 id="DIP-Dependency-Inversion-Principle"><a href="#DIP-Dependency-Inversion-Principle" class="headerlink" title="DIP: Dependency Inversion Principle"></a>DIP: Dependency Inversion Principle</h2><blockquote>
+<p>[I] “High level modules should not depend upon low level modules. Both should depend upon abstractions.”</p>
+<p>[II] “Abstractions should not depend upon details. Details should depend upon abstractions“, i.e., use lots of interfaces and abstractions.”</p>
+</blockquote>
+<ul>
+<li>Lots of interfaces and abstractions should be used.</li>
+</ul>
+<p><img src="/2021/07/06/SOLIDPrinciples/image-20210706234606858.png" alt="image-20210706234606858"></p>
+
+    </div>
+
+    <div class="about">
+        <h1>About this Post</h1>
+        <p>This post is written by Marcus Lee, licensed under <a
+                target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc/4.0">CC BY-NC 4.0</a>.</p>
+    </div>
+
+    
+        
+    
+</article>
+        <footer>
+    <div class="inner">
+        <div class="links">
+            
+            <div class="group">
+                <h4 class="title">Blog</h4>
+                
+                <a href="/" class="item" target="_blank">Blog</a>
+                
+                <a href="/archives" class="item" target="_blank">Archives</a>
+                
+                <a href="/friends" class="item" target="_blank">Friends</a>
+                
+                <a href="/projects" class="item" target="_blank">Projects</a>
+                
+                <a href="/resume" class="item" target="_blank">Resume</a>
+                
+                <a href="/about" class="item" target="_blank">About</a>
+                
+                <a href="/atom.xml" class="item" target="_blank">RSS</a>
+                
+            </div>
+            
+            <div class="group">
+                <h4 class="title">Projects</h4>
+                
+                <a href="https://github.com/transmister" class="item" target="_blank">Transmister</a>
+                
+                <a href="https://github.com/MrWillCom/css-and-js-windows-uwp-xaml-controls" class="item" target="_blank">CSS&amp;JS Windows UWP XAML Controls</a>
+                
+                <a href="https://github.com/MrWillCom/hexo-theme-cupertino" class="item" target="_blank">Theme Cupertino</a>
+                
+                <a href="https://github.com/MrWillCom/github-dark-mode" class="item" target="_blank">GitHub Dark Mode</a>
+                
+            </div>
+            
+            <div class="group">
+                <h4 class="title">Me</h4>
+                
+                <a href="https://github.com/MarkusLee" class="item" target="_blank">GitHub</a>
+                
+                <a href="mailto:lxmarcus@foxmail.com" class="item" target="_blank">Email</a>
+                
+            </div>
+            
+        </div>
+        &copy; 2021 Marcus Lee<br />
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+</footer>
+
+        
+<script src="/js/main.js"></script>
+
+        
+    </body>
+</html>
